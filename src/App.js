@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { ApolloProvider } from "react-apollo";
 import styled, { ThemeProvider } from "styled-components";
-import client from "./graphql";
+import client from "./config/apollo/client";
 import { theme } from "./config/styled-components/theme";
 import BaseStyles from "./config/styled-components/BaseStyles";
 import Normalizer from "./config/styled-components/NormalizeStyles";
