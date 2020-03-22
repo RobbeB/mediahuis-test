@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const DetailWrapper = styled.div`
+  margin-top: 16px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   margin-left: 20px;
 `;

@@ -11,8 +11,9 @@ export const GET_POKEMON = gql`
       types {
         name
       }
-      abilities {
+      moves {
         name
+        learnMethod
       }
     }
   }
