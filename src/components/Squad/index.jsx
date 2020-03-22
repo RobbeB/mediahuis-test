@@ -1,6 +1,6 @@
 import * as React from "react";
 import { SquadWrapper, Title, SquadList } from "./styles";
-import SquadItem from "../SquadItem";
+import SquadItem from "./SquadItem";
 import { SQUAD_SIZE } from "../../constants";
 
 const Squad = ({ squad = [] }) => {
