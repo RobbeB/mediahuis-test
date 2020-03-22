@@ -6,6 +6,7 @@ export const DetailWrapper = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   margin-left: 20px;
+  height: 100%;
 `;
 
 export const Info = styled.div`

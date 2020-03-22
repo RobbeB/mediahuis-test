@@ -15,11 +15,10 @@ import SelectedMoves from "./SelectedMoves";
 
 const isMoveEqual = (move1, move2) => move1.name === move2.name;
 
-const PokemonDetail = ({ name }) => {
+const PokemonDetail = ({ name, addToSquad }) => {
   const { data, error, loading } = useQuery(GET_POKEMON, {
     variables: { name }
   });
-
   const [selectedMoves, setSelectedMoves] = React.useState([]);
 
   const toggleMove = React.useCallback(
@@ -39,7 +38,7 @@ const PokemonDetail = ({ name }) => {
     [selectedMoves]
   );
 
-  const { image, stats, moves } = data ? data.Pokemon : {};
+  const { image, stats, moves, types } = data ? data.Pokemon : {};
 
   if (loading) return <div>loading...</div>;
   if (error) return <div>error!</div>;
@@ -49,7 +48,17 @@ const PokemonDetail = ({ name }) => {
       <Info>
         <Image src={image} alt={name} />
         <Name>{name}</Name>
-        <SaveButton>save pokemon</SaveButton>
+        <SaveButton
+          onClick={() => {
+            addToSquad(
+              { ...data.Pokemon, name, type: types[0] },
+              selectedMoves
+            );
+            setSelectedMoves([]);
+          }}
+        >
+          save pokemon
+        </SaveButton>
       </Info>
       <StatsAndMoves>
         <Stats stats={stats} />

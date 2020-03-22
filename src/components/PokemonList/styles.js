@@ -3,9 +3,9 @@ import styled from "styled-components";
 export const PokemonListWrapper = styled.aside`
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
   align-items: center;
   width: 200px;
+  height: 100%;
 `;
 
 export const Title = styled.h1`
@@ -25,4 +25,6 @@ export const SearchInput = styled.input`
 
 export const List = styled.ul`
   width: 100%;
+  height: 100%;
+  overflow-y: auto;
 `;

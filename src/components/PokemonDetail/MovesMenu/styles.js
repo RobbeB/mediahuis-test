@@ -32,6 +32,7 @@ export const MovesList = styled.ul`
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  height: 100%;
 `;
 
 export const MoveListItem = styled.li`
