@@ -4,7 +4,7 @@ import { GET_POKEMONS } from "../../config/apollo/queries/pokemons";
 import { SearchInput, PokemonListWrapper, Title, List } from "./styles";
 import PokemonListItem from "./PokemonListItem";
 
-const PokemonList = () => {
+const PokemonList = ({ setSelectedPokemon }) => {
   const { data, loading, error } = useQuery(GET_POKEMONS);
   const [search, setSearch] = React.useState("");
 
@@ -24,7 +24,11 @@ const PokemonList = () => {
           data.Pokemons.filter(
             pokemon => !search || pokemon.name.startsWith(search)
           ).map(pokemon => (
-            <PokemonListItem key={pokemon.id} name={pokemon.name} />
+            <PokemonListItem
+              key={pokemon.id}
+              name={pokemon.name}
+              setSelectedPokemon={setSelectedPokemon}
+            />
           ))}
       </List>
     </PokemonListWrapper>

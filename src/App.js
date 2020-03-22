@@ -16,6 +16,7 @@ const Logo = styled.img`
 const Container = styled.div`
   max-width: 980px;
   margin: 0 auto;
+  width: 100%;
 `;
 
 class App extends Component {
