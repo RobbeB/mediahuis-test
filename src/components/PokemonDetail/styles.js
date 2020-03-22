@@ -13,6 +13,12 @@ export const Info = styled.div`
   flex-direction: column;
 `;
 
+export const StatsAndMoves = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+`;
+
 export const Name = styled.h2`
   text-transform: uppercase;
   font-size: 18px;

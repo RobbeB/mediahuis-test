@@ -1,21 +1,48 @@
 import * as React from "react";
-import { DetailWrapper, Info, SaveButton, Image, Name } from "./styles";
+import {
+  DetailWrapper,
+  Info,
+  SaveButton,
+  Image,
+  Name,
+  StatsAndMoves
+} from "./styles";
 import { useQuery } from "react-apollo";
 import { GET_POKEMON } from "../../config/apollo/queries/pokemon";
 import Stats from "./Stats";
 import MovesMenu from "./MovesMenu";
+import SelectedMoves from "./SelectedMoves";
+
+const isMoveEqual = (move1, move2) => move1.name === move2.name;
 
 const PokemonDetail = ({ name }) => {
   const { data, error, loading } = useQuery(GET_POKEMON, {
     variables: { name }
   });
 
+  const [selectedMoves, setSelectedMoves] = React.useState([]);
+
+  const toggleMove = React.useCallback(
+    move => {
+      const moveOfSameMethod = selectedMoves.find(
+        selectedMove => move.learnMethod === selectedMove.learnMethod
+      );
+      if (!moveOfSameMethod) {
+        setSelectedMoves(moves => [...moves, move]);
+      }
+      if (moveOfSameMethod && isMoveEqual(move, moveOfSameMethod)) {
+        setSelectedMoves(moves =>
+          moves.filter(selectedMove => selectedMove.name !== move.name)
+        );
+      }
+    },
+    [selectedMoves]
+  );
+
+  const { image, stats, moves } = data ? data.Pokemon : {};
+
   if (loading) return <div>loading...</div>;
   if (error) return <div>error!</div>;
-
-  const { image, stats, types, moves } = data ? data.Pokemon : {};
-
-  console.log("test", image, stats, types);
 
   return (
     <DetailWrapper>
@@ -24,8 +51,11 @@ const PokemonDetail = ({ name }) => {
         <Name>{name}</Name>
         <SaveButton>save pokemon</SaveButton>
       </Info>
-      <Stats stats={stats} />
-      <MovesMenu moves={moves} />
+      <StatsAndMoves>
+        <Stats stats={stats} />
+        <SelectedMoves selectedMoves={selectedMoves} />
+      </StatsAndMoves>
+      <MovesMenu moves={moves} toggleMove={toggleMove} />
     </DetailWrapper>
   );
 };

@@ -7,7 +7,7 @@ import {
   MoveListItem
 } from "./styles";
 
-const MovesMenu = ({ moves = [] }) => {
+const MovesMenu = ({ moves = [], toggleMove }) => {
   const [activeLearnMethod, setActiveLearnMethod] = React.useState();
 
   const availableLearnMethods = moves.reduce((result, currentMove) => {
@@ -34,7 +34,9 @@ const MovesMenu = ({ moves = [] }) => {
         {moves
           .filter(move => move.learnMethod === activeLearnMethod)
           .map(move => (
-            <MoveListItem key={move.name}>{move.name}</MoveListItem>
+            <MoveListItem key={move.name} onClick={() => toggleMove(move)}>
+              {move.name}
+            </MoveListItem>
           ))}
       </MovesList>
     </MenuWrapper>
