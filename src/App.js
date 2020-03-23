@@ -5,6 +5,7 @@ import client from "./config/apollo/client";
 import { theme } from "./config/styled-components/theme";
 import BaseStyles from "./config/styled-components/BaseStyles";
 import Normalizer from "./config/styled-components/NormalizeStyles";
+import PokemonContainer from "./components/PokemonContainer";
 
 const Logo = styled.img`
   display: block;
@@ -15,6 +16,7 @@ const Logo = styled.img`
 const Container = styled.div`
   max-width: 980px;
   margin: 0 auto;
+  width: 100%;
 `;
 
 class App extends Component {
@@ -27,7 +29,7 @@ class App extends Component {
           <Container>
             <Logo src="https://vignette.wikia.nocookie.net/logopedia/images/2/2b/Pokemon_2D_logo.svg/revision/latest/scale-to-width-down/639?cb=20170115063554" />
 
-            <div>BUILD YOUR APP here</div>
+            <PokemonContainer />
           </Container>
         </ThemeProvider>
       </ApolloProvider>

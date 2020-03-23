@@ -1,18 +1,19 @@
 import gql from "graphql-tag";
 
 export const GET_POKEMON = gql`
-  {
-    Pokemon($name: String!) {
-      image,
+  query Pokemon($name: String!) {
+    Pokemon(name: $name) {
+      image
       stats {
-        name,
-        value,
-      },
+        name
+        value
+      }
       types {
         name
-      },
-      abilities {
+      }
+      moves {
         name
+        learnMethod
       }
     }
   }
